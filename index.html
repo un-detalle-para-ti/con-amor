@@ -23,23 +23,41 @@
         }
 
         h1 {
-            color: #fff;
             font-size: 32px;
             margin-bottom: 40px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .titulo-texto {
+            color: #ffffff;
+            text-shadow:
+                0 0 6px #ff3366,
+                0 0 12px #ff3366,
+                0 0 18px #ff3366;
+        }
+
+        .corazon {
+            color: #ff3366;
+            text-shadow: none;
         }
 
         .texto {
-            padding: 30px;
-            color: #fff8f0;
+            padding: 35px 30px;
+            color: #e0f7ff;
             font-size: 20px;
             font-style: italic;
             line-height: 1.8;
             max-width: 550px;
             margin: 0 auto 50px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.18);
             border-radius: 20px;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 25px rgba(255, 51, 102, 0.25);
+        }
+
+        .texto p {
+            text-shadow:
+                0 0 6px #4facfe,
+                0 0 12px #4facfe;
         }
 
         /* BOTÓN FIJO — Abajo a la derecha con Stitch */
@@ -88,7 +106,7 @@
 </head>
 <body>
 
-    <h1>Para Ti, Con Amor ❤️</h1>
+    <h1><span class="titulo-texto">Para Ti, Con Amor</span> <span class="corazon">❤️</span></h1>
 
     <div class="texto">
         <p>A veces me detengo a pensar en todo este tiempo transcurrido, en cómo todo cambia a nuestro alrededor, en cómo las personas van y vienen… Y entonces me doy cuenta de algo maravilloso: lo que siento por ti no ha hecho más que fortalecerse.</p>
