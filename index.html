@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Ti, Con Amor ❤️</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             padding: 80px 20px;
             min-height: 100vh;
-            background: linear-gradient(135deg, #4facfe, #7b4397, #dc2430);
+            background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81);
             background-size: 400% 400%;
             animation: fondo 15s ease infinite;
             font-family: 'Georgia', 'Times New Roman', serif;
             text-align: center;
+            overflow-x: hidden;
         }
 
         @keyframes fondo {
@@ -25,6 +32,8 @@
         h1 {
             font-size: 32px;
             margin-bottom: 40px;
+            position: relative;
+            z-index: 10;
         }
 
         .titulo-texto {
@@ -42,22 +51,25 @@
 
         .texto {
             padding: 35px 30px;
-            color: #e0f7ff;
+            color: #ffe4e6;
             font-size: 20px;
             font-style: italic;
             line-height: 1.8;
             max-width: 550px;
             margin: 0 auto 50px;
-            background: rgba(255, 255, 255, 0.18);
+            background: rgba(15, 23, 42, 0.6);
             border-radius: 20px;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 0 25px rgba(255, 51, 102, 0.25);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(129, 140, 248, 0.2);
+            position: relative;
+            z-index: 10;
         }
 
         .texto p {
             text-shadow:
-                0 0 6px #4facfe,
-                0 0 12px #4facfe;
+                0 0 6px #c7d2fe,
+                0 0 12px #c7d2fe;
+            margin-bottom: 15px;
         }
 
         .firmado {
@@ -141,7 +153,7 @@
             font-size: 17px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 999;
+            z-index: 100;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -164,11 +176,22 @@
             font-size: 30px;
             pointer-events: none;
             animation: caer 5s linear forwards;
+            z-index: 5;
         }
 
         @keyframes caer {
             0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0.7; }
+        }
+
+        /* 🎆 FUEGOS ARTIFICIALES */
+        .fuego {
+            position: fixed;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
         }
     </style>
 </head>
@@ -192,21 +215,15 @@
 
     <div class="texto">
         <p>A veces me detengo a pensar en todo este tiempo transcurrido, en cómo todo cambia a nuestro alrededor, en cómo las personas van y vienen… Y entonces me doy cuenta de algo maravilloso: lo que siento por ti no ha hecho más que fortalecerse.</p>
-
         <p>Han pasado los días, las semanas, los meses, y en cada uno de ellos ha habido un rincón de mi pensamiento reservado solo para ti.</p>
-
         <p>Te quiero, con toda la sinceridad de mi alma, y más de lo que jamás podría llegar a expresarte con palabras.</p>
-
         <p>Sé que la distancia, el tiempo y las circunstancias han hecho lo suyo.</p>
-
         <p>Es posible que ya no me guardes un espacio en tu mente como antes. Que mis recuerdos aparezcan solo de vez en cuando, fugaces y lejanos, para desaparecer pronto entre tus ocupaciones.</p>
-
         <p>Sé que ya no compartimos nuestras vidas, que el día a día nos ha separado, y sin embargo… cada día que pasa, te quiero un poco más. Es un sentimiento que no necesita nada a cambio para seguir creciendo.</p>
-
         <p>No espero que me busques, ni que me recuerdes siempre. Solo me basta con saber que existes, que estás en este mundo, que en algún momento nuestros caminos se cruzaron y dejaste una huella en mí que nada podrá borrar. Eso es suficiente para hacerme feliz.</p>
-
         <p>Y así, con la ternura que solo el cariño sincero puede dar, te dejo estas palabras como promesa eterna: mi corazón es tuyo, ha sido tuyo y será tuyo para siempre. No tiene dueño más que tú, mi querida madame.</p>
-
+        <p>¿Sabes lo que le hace un cable a otro cable?... Seguirle la corriente jajaja</p>
+        <p>¿Lo pillas jaja ¿SÍ? Pues suéltalo que da calambre 😜</p>
         <p class="firmado">
             <strong>Firmado:</strong> Tu Dori. ❤️
             <img src="dory.png" alt="Dory" class="dory">
@@ -236,18 +253,17 @@
             caja.style.display = 'none';
             contenido.style.display = 'block';
             iniciarAudio();
+            iniciarFuegosArtificiales();
         } else {
             error.style.display = 'block';
             input.value = '';
         }
     }
 
-    // Permitir pulsar Enter para entrar
     document.getElementById('inputContraseña').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') verificarContraseña();
     });
 
-    // 🎵 Música — SOLO suena tras poner contraseña
     function iniciarAudio() {
         if (musicaActiva) return;
         audio = new Audio('audio.mp3');
@@ -279,7 +295,6 @@
         for (let i = 0; i < 20; i++) setTimeout(crearFlor, i * 50);
     }
 
-    // Flores cayendo continuamente
     setInterval(function() {
         if (musicaActiva) {
             for(let i = 0; i < 6; i++) {
@@ -287,6 +302,51 @@
             }
         }
     }, 600);
+
+    // 🎆 FUEGOS ARTIFICIALES
+    const coloresFuegos = ['#ef4444', '#f59e0b', '#facc15', '#22c55e', '#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4'];
+
+    function crearFuego(x, y) {
+        const particulas = 32;
+        const color = coloresFuegos[Math.floor(Math.random() * coloresFuegos.length)];
+        
+        for (let i = 0; i < particulas; i++) {
+            const p = document.createElement('div');
+            p.className = 'fuego';
+            p.style.left = x + 'px';
+            p.style.top = y + 'px';
+            p.style.background = color;
+            p.style.boxShadow = `0 0 10px ${color}, 0 0 20px ${color}, 0 0 30px ${color}`;
+            
+            const angulo = (i / particulas) * Math.PI * 2;
+            const distancia = 90 + Math.random() * 90;
+            const duracion = 1 + Math.random() * 0.8;
+            
+            p.animate([
+                { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                { 
+                    transform: `translate(${Math.cos(angulo) * distancia}px, ${Math.sin(angulo) * distancia}px) scale(0.2)`,
+                    opacity: 0
+                }
+            ], {
+                duration: duracion * 1000,
+                easing: 'ease-out'
+            });
+            
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), duracion * 1000);
+        }
+    }
+
+    function iniciarFuegosArtificiales() {
+        function lanzarFuego() {
+            const x = 100 + Math.random() * (window.innerWidth - 200);
+            const y = 80 + Math.random() * (window.innerHeight / 2);
+            crearFuego(x, y);
+            setTimeout(lanzarFuego, 700 + Math.random() * 600);
+        }
+        lanzarFuego();
+    }
 </script>
 
 </body>
